@@ -1,0 +1,26 @@
+h1 {
+    background-color: white;
+    color: #ca6161;
+    font-style: bold;
+    font-family: 'Georgia', Times, Times New Roman, serif; 
+}
+
+p {
+    background-color: white;
+    color: #6b7e91;
+    font-family: 'Georgia', Times, Times New Roman, serif; 
+    font-style: bold;
+    font-size: 20px;
+}
+
+button {
+    background-color: #6b7e91;
+    color: white;
+    margin: 10px;
+    padding: 5px;
+}
+
+#giphs {
+    float: left;
+}
+
