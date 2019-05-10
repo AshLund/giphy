@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+
+
+
+</head>
+<body>
+
+<div id="person"></div> 
+<div id="giphs"></div>
+
+    <script>
+
+
+
+var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stranger Things", "Meghan Markle", "Princess Bride", "Star Wars", "Milwaukee Brewers", "Milwaukee Bucks"]
+        
+        //create an array to topics variable
+
+
+
+    var buttonDiv=$("#person");
+    var newButtonDiv=$("<button>" + topics.join("<button> ") + "</button>");
+    buttonDiv.html(newButtonDiv)
+    //get information from buttons
+
+    //ajax info
+
+    $("#person").on("click", function() {
+    var person=event.target.textContent
+    console.log(person)
+
+    var queryURL= "http://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=dJZAoTE5oJZcb8BOEXkAExAi85YngNzf&limit=10"
+    //get giphy api link
+    //add in person
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+        //turn topics into buttons
+    .then(function(response) {
+        var results = response.data;
+        console.log(results)
+
+        for (var i = 0; i < results.length; i++) {
+            
+            var div=$("<div>");
+
+            
+            var personImage = $("<img>");
+            personImage.attr("src", results[i].images.fixed_height.url);
+
+           div.append(personImage);
+
+           $("#giphs").prepend(div);
+
+        }
+
+
+
+        
+
+
+
+    })
+   
+    })
+        
+
+        
+        
+        //get rating
+        
+        
+        
+        </script>
+    
+</body>
+</html>
