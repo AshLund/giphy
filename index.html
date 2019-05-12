@@ -20,65 +20,83 @@
 <div id="giphs"></div>
 
     <script>
-
-
-
 var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stranger Things", "Meghan Markle", "Princess Bride", "Star Wars", "Milwaukee Brewers", "Milwaukee Bucks"]
         
         //create an array to topics variable
-
-
-
     var buttonDiv=$("#person");
     var newButtonDiv=$("<button>" + topics.join("<button> ") + "</button>");
     buttonDiv.html(newButtonDiv)
     //get information from buttons
-
     //ajax info
-
     $("#person").on("click", function() {
     var person=event.target.textContent
     console.log(person)
-
     var queryURL= "http://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=dJZAoTE5oJZcb8BOEXkAExAi85YngNzf&limit=10"
     //get giphy api link
     //add in person
-
     $.ajax({
         url: queryURL,
         method: "GET"
       })
-
         //turn topics into buttons
     .then(function(response) {
         var results = response.data;
         console.log(results)
-
         for (var i = 0; i < results.length; i++) {
+
+            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
             
             var div=$("<div>");
 
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+
             
+            var stillState=results[i].images.fixed_height_still.url
+            var animateState= results[i].images.fixed_height.url
             var personImage = $("<img>");
-            personImage.attr("src", results[i].images.fixed_height_still.url);
-
+            personImage.attr({
+                "src" : stillState,
+                "data-state": "still",
+                "class": "images",
+            })
+            div.append(p)
            div.append(personImage);
-
            $("#giphs").prepend(div);
+           console.log(giphs)
 
+                } 
+            }
+
+        $(".images").on("click", function () {
+            // for (var i = 0; i < results.length; i++) {
+            var state = $(this).attr("data-state");
+            console.log(state)
+            if (state==="still") {
+                $(this).attr("src", animateState)
+                $(this).attr("data-state", "animate")
+
+            }else {
+              $(this).attr("src", stillState)
+              $(this).attr("data-state", "still")
+            // }
         }
-
-       
-
-        
+        })
 
 
+    //     if (state === "still") {
+    //     $(this).attr("src", $(this).attr("data-animate"));
+    //     $(this).attr("data-state", "animate");
+    //   } else {
+    //     $(this).attr("src", $(this).attr("data-still"));
+    //     $(this).attr("data-state", "still");
+    //   }
+    // });
+
+         
+})
 
     })
-   
-    })
-        
-
         
         
         //get rating
