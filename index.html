@@ -39,8 +39,7 @@ function renderButtons() {
     var buttonDiv=$("#person");
     var newButtonDiv=$("<button>" + topics.join("<button> ") + "</button>");
     buttonDiv.html(newButtonDiv)
-    //get information from buttons
-    //ajax info
+    
 }
 
 renderButtons()
@@ -73,7 +72,6 @@ renderButtons()
             var animateState= results[i].images.fixed_height.url
             
 
-            var pp=$("<p>").text("url" + stillState)
             var personImage = $("<img>");
             personImage.attr({
                 "src" : stillState,
@@ -88,19 +86,18 @@ renderButtons()
                 } 
             }
 
+        $(document).on("click", "img", function(){
+            var source = $(this).attr("src");
+	    var split = source.split("_")[1];
+	    var animateSrc = source.replace("_s.gif", ".gif");
+	    var stillSrc = source.replace(".gif", "_s.gif");
+		if (split == "s.gif"){
+			$(this).attr("src", animateSrc);
+		}else{
+			$(this).attr("src", stillSrc);
+		}
             
-        $(personImage).on("click", function () {
-            var state = $(".images").attr("data-state");
-            console.log(state)
-            if (state==="still") {
-                personImage.attr("src", animateState)
-               personImage.attr("data-state", "animate")
-
-            }else {
-             personImage.attr("src", stillState)
-            personImage.attr("data-state", "still")
-        }
-        })
+    });
 
 
          
