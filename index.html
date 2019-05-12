@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Giphy</title>
 
 
 
@@ -47,7 +47,7 @@ renderButtons()
     $("#person").on("click", function() {
     var person=event.target.textContent
     console.log(person)
-    var queryURL= "http://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=dJZAoTE5oJZcb8BOEXkAExAi85YngNzf&limit=10"
+    var queryURL= "https://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=dJZAoTE5oJZcb8BOEXkAExAi85YngNzf&limit=10"
     //get giphy api link
     //add in person
     $.ajax({
