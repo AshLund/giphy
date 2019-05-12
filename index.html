@@ -68,30 +68,20 @@ var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stran
                 } 
             }
 
+            
         $(".images").on("click", function () {
-            // for (var i = 0; i < results.length; i++) {
-            var state = $(this).attr("data-state");
+            var state = $(".images").attr("data-state");
             console.log(state)
             if (state==="still") {
-                $(this).attr("src", animateState)
-                $(this).attr("data-state", "animate")
+                personImage.attr("src", animateState)
+               personImage.attr("data-state", "animate")
 
             }else {
-              $(this).attr("src", stillState)
-              $(this).attr("data-state", "still")
-            // }
+             personImage.attr("src", stillState)
+            personImage.attr("data-state", "still")
         }
         })
 
-
-    //     if (state === "still") {
-    //     $(this).attr("src", $(this).attr("data-animate"));
-    //     $(this).attr("data-state", "animate");
-    //   } else {
-    //     $(this).attr("src", $(this).attr("data-still"));
-    //     $(this).attr("data-state", "still");
-    //   }
-    // });
 
          
 })
