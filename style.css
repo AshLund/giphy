@@ -27,3 +27,17 @@ button {
     float: left;
 }
 
+form {
+    float: right;
+    color: #ca6161;
+    font-family: 'Georgia', Times, Times New Roman, serif; 
+    font-weight: bold;
+    background-color: white;
+    border-style: solid;
+    border-color:   #ca6161;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 100px;
+    
+
+}

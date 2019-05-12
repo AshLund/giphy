@@ -19,15 +19,30 @@
 <div id="person"></div> 
 <div id="giphs"></div>
 
+<form>
+   <label for="thing"> Add in your own favorite thing!<label><br>
+    <input type="text" id="thing"> <br>
+   <button type="submit" id="user" value="Submit"> Submit </button>
+</form>
+
+
+
+
     <script>
 var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stranger Things", "Meghan Markle", "Princess Bride", "Star Wars", "Milwaukee Brewers", "Milwaukee Bucks"]
-        
+
+
+function renderButtons() { 
         //create an array to topics variable
     var buttonDiv=$("#person");
     var newButtonDiv=$("<button>" + topics.join("<button> ") + "</button>");
     buttonDiv.html(newButtonDiv)
     //get information from buttons
     //ajax info
+}
+
+renderButtons()
+
     $("#person").on("click", function() {
     var person=event.target.textContent
     console.log(person)
@@ -54,6 +69,9 @@ var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stran
             
             var stillState=results[i].images.fixed_height_still.url
             var animateState= results[i].images.fixed_height.url
+            
+
+            var pp=$("<p>").text("url" + stillState)
             var personImage = $("<img>");
             personImage.attr({
                 "src" : stillState,
@@ -69,7 +87,7 @@ var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stran
             }
 
             
-        $(".images").on("click", function () {
+        $(personImage).on("click", function () {
             var state = $(".images").attr("data-state");
             console.log(state)
             if (state==="still") {
@@ -87,6 +105,14 @@ var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stran
 })
 
     })
+
+    $("#user").on("click", function(event){
+    event.preventDefault();
+    var userInput=$("#thing").val().trim();
+    console.log(userInput)
+    topics.push(userInput)
+    renderButtons()
+})
         
         
         //get rating
