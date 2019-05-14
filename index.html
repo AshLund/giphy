@@ -86,22 +86,14 @@ renderButtons()
                 } 
             }
 
-        $(document).on("click", "img", function(){
-            var source = $(this).attr("src");
-	    var split = source.split("_")[1];
-	    var animateSrc = source.replace("_s.gif", ".gif");
-	    var stillSrc = source.replace(".gif", "_s.gif");
-		if (split == "s.gif"){
-			$(this).attr("src", animateSrc);
-		}else{
-			$(this).attr("src", stillSrc);
-		}
-            
-    });
-
+    
 
          
 })
+
+
+
+
 
     })
 
@@ -117,6 +109,18 @@ renderButtons()
         //get rating
         
         
+        $(document).on("click", "img", function(){
+            var source = $(this).attr("src");
+	    var split = source.split("_")[1];
+	    var animateSrc = source.replace("_s.gif", ".gif");
+        var stillSrc = source.replace(".gif", "_s.gif");
+		if (split == "s.gif"){
+			$(this).attr("src", animateSrc);
+		}else{
+			$(this).attr("src", stillSrc);
+		}
+            
+    });
         
         </script>
     
