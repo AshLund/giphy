@@ -48,7 +48,8 @@ $.ajax({
     method: 'GET'
 }).then(function(response){
 
-    var videoSrc='https://www.youtube.com/embed/' + response.items[0].id.videoId + '?autoplay=0'
+        for (var i = 0; i < 9; i++) {
+    var videoSrc='https://www.youtube.com/embed/' + response.items[i].id.videoId + '?autoplay=0'
 
     console.log(videoSrc)
 
@@ -62,7 +63,7 @@ $.ajax({
     console.log(results.items)
 
     // document.write(results)
-
+        }
 
 })
 
