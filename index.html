@@ -32,44 +32,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
 <script>
-
-const search = 'TaylorSwift'
-
-var apiKey = 'AIzaSyCkrudrWOfe_tgbrb2Vhuyg9nWVkGRyvZc'
-
-
-
-var url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + search + '&type=video&videoEmbeddable=true&order=viewCount' + '&maxResults=25&key=' + apiKey
-
-
-$.ajax({
-    url: url, 
-    method: 'GET'
-}).then(function(response){
-
-        for (var i = 0; i < 9; i++) {
-    var videoSrc='https://www.youtube.com/embed/' + response.items[i].id.videoId + '?autoplay=0'
-
-    console.log(videoSrc)
-
-    var video = $('<iframe />', {
-        id: 'video',
-        src: videoSrc
-    });
-    video.appendTo($('#videoPlayer'))
-
-    var results = response;
-    console.log(results.items)
-
-    // document.write(results)
-        }
-
-})
-
-</script>
-
-    <!-- <script>
 var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stranger Things", "Meghan Markle", "Princess Bride", "Star Wars", "Milwaukee Brewers", "Milwaukee Bucks"]
 
 
@@ -161,7 +125,7 @@ renderButtons()
             
     });
         
-        </script> -->
+        </script> 
     
 </body>
 </html>
