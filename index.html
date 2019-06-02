@@ -4,128 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Giphy</title>
 
 
 
 </head>
-<body background="memphis-colorful.png"></body>
+<body background="assets/images/memphis-colorful.png"></body>
 
 <h1> My Favorite Things!</h1>
 <p> Click a button to see giphs of my favorite things!</p>
 
 
 <div id="container">
-<div id="person"></div> 
-<div id="giphs"></div>
-<div id="videoPlayer"></div>
+    <div id="person"></div> 
 
 <form>
-   <label for="thing"> Add your own favorite thing!<label><br>
-    <input type="text" id="thing"> <br>
-   <button type="submit" id="user" value="Submit"> Submit </button>
-</form>
+        <label for="thing"> Add your own favorite thing!<label><br>
+         <input type="text" id="thing"> <br>
+        <button type="submit" id="user" value="Submit"> Submit </button>
+     </form>
 
 </div>
 
+<div id="giphs"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<script src="assets/javascript/app.js"></script>
 
-<script>
-var topics= ["Taylor Swift", "cats", "Tom Brady", "Parks and Recreation", "Stranger Things", "Meghan Markle", "Princess Bride", "Star Wars", "Milwaukee Brewers", "Milwaukee Bucks"]
-
-
-function renderButtons() { 
-        //create an array to topics variable
-    var buttonDiv=$("#person");
-    var newButtonDiv=$("<button>" + topics.join("<button> ") + "</button>");
-    buttonDiv.html(newButtonDiv)
-    
-}
-
-renderButtons()
-
-    $("#person").on("click", function() {
-    var person=event.target.textContent
-    console.log(person)
-    var queryURL= "https://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=dJZAoTE5oJZcb8BOEXkAExAi85YngNzf&limit=10"
-    //get giphy api link
-    //add in person
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-        //turn topics into buttons
-    .then(function(response) {
-        var results = response.data;
-        console.log(results)
-        for (var i = 0; i < results.length; i++) {
-
-            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-            
-            var div=$("<div>");
-
-                var rating = results[i].rating;
-                var p = $("<p>").text("Rating: " + rating);
-
-            
-            var stillState=results[i].images.fixed_height_still.url
-            var animateState= results[i].images.fixed_height.url
-            
-
-            var personImage = $("<img>");
-            personImage.attr({
-                "src" : stillState,
-                "data-state": "still",
-                "class": "images",
-            })
-            div.append(p)
-           div.append(personImage);
-           $("#giphs").prepend(div);
-           console.log(giphs)
-
-                } 
-            }
-
-    
-
-         
-})
-
-
-
-
-
-    })
-
-    $("#user").on("click", function(event){
-    event.preventDefault();
-    var userInput=$("#thing").val().trim();
-    console.log(userInput)
-    topics.push(userInput)
-    renderButtons()
-})
-        
-        
-        //get rating
-        
-        
-        $(document).on("click", "img", function(){
-            var source = $(this).attr("src");
-	    var split = source.split("_")[1];
-	    var animateSrc = source.replace("_s.gif", ".gif");
-        var stillSrc = source.replace(".gif", "_s.gif");
-		if (split == "s.gif"){
-			$(this).attr("src", animateSrc);
-		}else{
-			$(this).attr("src", stillSrc);
-		}
-            
-    });
-        
-        </script> 
-    
 </body>
 </html>
